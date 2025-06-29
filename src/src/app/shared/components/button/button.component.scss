@@ -1,0 +1,62 @@
+.custom-button {
+  display: inline-flex ;
+  align-items: center ; /* center vertically */
+  border-radius: 4px;
+
+  background-color: #007298; /* example color */
+  cursor: pointer;
+  height: 50px; /* match your design height */
+   &:hover {
+    background-color: #005f7a;
+  }
+
+  &:focus {
+    outline: 2px solid #00bcd4;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: #004e65;
+  }
+}
+
+/* Icon styling */
+.icon {
+width: 61;
+height: 50;
+justify-items: center;
+vertical-align: middle;
+  display: inline-flex;
+text-align: center;
+background-color: none;
+}
+
+/* Text styling */
+.button-text {
+  display: inline-flex; // ✅ instead of just flex
+  flex-direction: row;
+  gap: 10px;
+width: fit-content;
+height: 50;
+color: #FFFFFF;
+border-radius: 4px;
+padding-top: 13px;
+padding-right: 36px;
+padding-bottom: 13px;
+padding-left: 36px;
+font-weight: 700;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0px;
+text-align: center;
+text-transform: uppercase;
+
+}
+.app-button{
+    width: fit-content;
+display: inline-flex; // ✅ instead of just flex
+  flex-direction: row;
+  gap: 10px;
+
+  margin-top: 10px;
+}

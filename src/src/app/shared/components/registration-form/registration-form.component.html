@@ -1,0 +1,56 @@
+<h2 class="text-align-center">Registration</h2>
+<div class="app-plate">
+  <div class="registration-form">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div>
+        <!-- Name -->
+        <div class="form__control">
+          <label for="name">Name</label>
+          <input type="text" id="name" formControlName="name" placeholder="Input text"/>
+          <div *ngIf="(registrationForm.get('name')?.touched && registrationForm.get('name')?.invalid || submitted" class="text-danger">
+            <div *ngIf="registrationForm.get('name')?.errors?.['required']">Name is required.</div>
+            <div *ngIf="registrationForm.get('name')?.errors?.['minlength']">Name must be at least 6 characters long.</div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form__control">
+          <label for="email">Email</label>
+          <input type="text" id="email" formControlName="email" placeholder="Input text" emailValidator/>
+          <div *ngIf="(registrationForm.get('email')?.touched  && registrationForm.get('email')?.invalid || submitted" class="text-danger">
+            <div *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required.</div>
+            <div *ngIf="registrationForm.get('email')?.errors?.['invalidEmail']">Please enter a valid email address.</div>
+          </div>
+        </div>
+        <div class="form__control">
+          <label for="password">Password</label>
+          <div style="position: relative; display: inline-block; width: 250px;">
+          <input [type]="passwordVisible ? 'text' : 'password'" id="password" formControlName="password" placeholder="Input text"/>
+          <img 
+            (click)="togglePasswordVisibility()" src="assets/eye.svg" alt="eye" 
+            style="width:24px; height:24px; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor:pointer;"
+            *ngIf="!passwordVisible">
+          <img 
+            (click)="togglePasswordVisibility()" src="assets/closedEye.svg" alt="eye-off" 
+            style="width:24px; height:24px; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor:pointer;"
+            *ngIf="passwordVisible">
+            </div>
+          <span
+            id="passwordErrorMessage"
+            class="text-danger"
+            *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched || submitted)">
+            Password is required.
+          </span>
+
+        </div>
+      </div>
+
+      <div class="form__action">
+        <app-button [buttonText]="'REGISTRATION'" type="submit"></app-button>
+      </div>
+    </form>
+    <p>
+      Already have an account? <a routerLink="/login">Login here</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<h2 class="text-align-center">Login</h2>
+<div class="app-plate">
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <div class="login-form">
+      <div>
+        <div class="form__control">
+          <label for="email">Email</label>
+          <!--Use the name `email` for the form control.-->
+          <input  type="text"  id="email"  name="email"   placeholder="Input text"  ngModel  #email="ngModel" required emailValidator/>
+          <div *ngIf="(email?.invalid && (email?.touched || loginForm?.submitted || loginForm?.dirty))" class="text-danger">
+            <div *ngIf="email.errors?.['required']">Email is required.</div>
+            <div *ngIf="email.errors?.['invalidEmail']">Please enter a valid email address.</div>
+          </div>
+        </div>
+        <div class="form__control">
+          <label for="password">Password</label>
+          <!--Use the name `password` for the form control.-->
+          <div style="position: relative; display: inline-block; width: 250px;">
+  <!-- Password Input -->
+  <input
+    [type]="passwordVisible ? 'text' : 'password'" 
+    id="password" 
+    name="password" 
+    placeholder="Input text" 
+    ngModel 
+    #password="ngModel" 
+    required
+    
+  />
+<img 
+  (click)="togglePasswordVisibility()" 
+  src="assets/eye.svg" 
+  alt="eye" 
+  style="width:24px; height:24px; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor:pointer;"
+  *ngIf="!passwordVisible">
+<img 
+  (click)="togglePasswordVisibility()" 
+  src="assets/closedEye.svg" 
+  alt="eye-off" 
+  style="width:24px; height:24px; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor:pointer;"
+  *ngIf="passwordVisible">
+</div>
+          <div *ngIf="(password?.invalid && (password?.touched|| password?.dirty || loginForm.submitted))" class="text-danger">
+            Password is required.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="form__action">
+          <app-button buttonText="Login" type="submit"></app-button>
+        </div>
+        <div class="form__text">
+          If you don't have an account you may <strong>Registration</strong>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

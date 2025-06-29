@@ -1,0 +1,27 @@
+<div class="course-card">
+    <div class="course-card__description">
+      <!-- Replace ::text:: with your code -->
+      <div class="course-card__description-title">{{ course.title }}</div>
+      <div class="course-card__description-text">{{ course.description }}</div>
+    </div>
+    <div class="course-card__info">
+        <div class="course-card__info-text">
+            <div>
+              <b>Authors: </b>
+              {{ course.authors.join(', ') }}
+            </div>
+            <div><b>Duration: </b><span class="course-card__duration">{{ course.duration }}</span></div>
+            <div><b>Created: </b><span class="course-card__date">{{ course.creationDate | date }}</span></div>
+        </div>
+        <div class="course-card__info-actions">
+           
+            <div class="course-card__buttons">
+                 <app-button buttonText="Show Course" (click)="onShowCourse()"></app-button>
+                <!--Enter your code here-->
+                <app-button *ngIf="editable" iconName="edit.svg"></app-button>
+                <app-button *ngIf="editable" iconName="trash.svg"></app-button>
+                
+            </div>
+        </div>
+    </div>
+</div>

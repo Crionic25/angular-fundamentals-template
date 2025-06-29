@@ -1,0 +1,36 @@
+<app-header>  <div class="user-actions">
+    <span *ngIf="isLoggedIn">{{ username }}</span>
+    <button (click)="toggleLogin()">
+      {{ isLoggedIn ? 'Log out' : 'Log in' }}
+    </button>
+  </div></app-header>
+<div class="app-root">
+  <!-- Search component -->
+  <!--<app-search></app-search>-->
+
+
+  <!-- Info component -->
+  <!--<app-info></app-info>-->
+  <app-info 
+    title="Your List Is Empty" 
+    text="Please use 'Add New Course' button to add your first course">
+    <app-button buttonText="ADD NEW COURSE"></app-button>
+  </app-info>
+
+  <!-- Course Card component -->
+  <div *ngFor="let course of courses">
+    <app-course-card [course]="course" [editable]="true" (clickOnShow)="handleShowCourse(course)"></app-course-card>
+  </div>
+
+  <!-- Login Form component -->
+  <app-login-form></app-login-form>
+
+  <!-- Login Form component -->
+  <app-registration-form></app-registration-form>
+
+  <!-- Login Form component -->
+  <app-course-form></app-course-form>
+
+  <!-- Modal component -->
+  <!-- <app-modal [message]="'Message'" [title]="'Title'" [okButtonText]="'Ok'" [cancelButtonText]="'Cancel'"></app-modal> -->
+</div>

@@ -1,0 +1,9 @@
+<div class="app-button">
+  <!-- Replace the text below with your code -->
+<button class="custom-button">
+  <ng-container *ngIf="iconName">
+   <img [src]="'assets/' + iconName" alt="icon" class="icon" [ngClass]="{'hidden': !iconName}" />
+  </ng-container>
+  <span *ngIf="buttonText" class="button-text">{{ buttonText }}</span>
+</button>
+</div>

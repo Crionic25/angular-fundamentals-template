@@ -1,0 +1,75 @@
+<h2>Create / Edit Course</h2>
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+  <div class="app-plate">
+    <div class="course">
+      <h3>Main Info</h3>
+      
+      <!-- Title -->
+      <div class="form__control">
+        <label for="title">Title</label>
+        <input type="text" id="title" formControlName="title" placeholder="Input text"/>
+        <span *ngIf="courseForm.get('title')?.touched && courseForm.get('title')?.invalid" class="text-danger">
+          Title is required and should have at least 2 characters.
+        </span>
+      </div>
+      <div class="form__control">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" placeholder="Input text" rows="4" cols="5"></textarea>
+        <span *ngIf="courseForm.get('description')?.touched || courseForm.get('description')?.dirty && courseForm.get('description')?.invalid" class="text-danger">
+          Description is required and should have at least 2 characters.
+        </span>
+      </div>
+
+      <div class="separator"></div>
+
+      <h3>Authors</h3>
+      <div class="form__control">
+         <div class="course__flex" formGroupName="newAuthor">
+          <input type="text" id="author" formControlName="name" placeholder="Input Author Name" />
+          <span *ngIf="courseForm.get('newAuthor.name')?.touched || courseForm.get('newAuthor.name')?.dirty && courseForm.get('newAuthor.name')?.invalid" class="text-danger">
+    <div *ngIf="courseForm.get('newAuthor.name')?.errors?.['required']">Author name is required.</div>
+    <div *ngIf="courseForm.get('newAuthor.name')?.errors?.['pattern']">Author name should only contain Latin letters and numbers.</div>
+    <div *ngIf="courseForm.get('newAuthor.name')?.errors?.['minlength']">Author name should be at least 2 characters long.</div>
+  </span>
+            <button type="submit" (click)="addAuthor()" [disabled]="courseForm.get('newAuthor.name')?.invalid">Create Author</button>
+      
+         </div>
+     </div>
+        <div class="course__authors">
+          <ul>
+            <li *ngFor="let author of authors.controls; let i = index">
+              <span>{{ author.value }}</span>
+              <button type="button" (click)="removeAuthor(i)">Delete Author</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <app-search 
+  [placeholder]="'Search courses...'" 
+  (search)="onSearch($event)">
+</app-search>
+
+<div class="courses-list">
+  <div *ngFor="let course of filteredCourses" class="course-item">
+    <h3>{{ course.title }}</h3>
+  </div>
+</div>
+
+      <div class="separator"></div>
+
+      <h3>Duration</h3>
+      <div class="form__control">
+        <input type="number" id="duration" formControlName="duration" placeholder="Input duration" required/>
+        <span *ngIf="courseForm.get('duration')?.touched || courseForm.get('duration')?.dirty && courseForm.get('duration')?.invalid" class="text-danger">
+          Duration is required and must be greater than or equal to 0.
+        </span>
+      </div>
+
+      <div class="form__action">
+      
+      <app-button buttontext="Cancel"></app-button>
+      <app-button buttontext="Create Course"></app-button>
+      </div>
+    </div>
+  
+</form>
