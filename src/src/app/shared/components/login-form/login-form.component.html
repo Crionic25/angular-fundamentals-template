@@ -7,9 +7,9 @@
           <label for="email">Email</label>
           <!--Use the name `email` for the form control.-->
           <input  type="text"  id="email"  name="email"   placeholder="Input text"  ngModel  #email="ngModel" required emailValidator/>
-          <div *ngIf="(email?.invalid && (email?.touched || loginForm?.submitted || loginForm?.dirty))" class="text-danger">
-            <div *ngIf="email.errors?.['required']">Email is required.</div>
-            <div *ngIf="email.errors?.['invalidEmail']">Please enter a valid email address.</div>
+          <div *ngIf="(loginForm.get.('email')?.invalid && (loginForm.get.('email')??.touched || loginForm?.submitted ))" class="text-danger">
+            <div *ngIf="loginForm.get.('email')?.errors?.['required']">Email is required.</div>
+            <div *ngIf="loginForm.get.('email')?.errors?.['invalidEmail']">Please enter a valid email address.</div>
           </div>
         </div>
         <div class="form__control">
@@ -40,7 +40,7 @@
   style="width:24px; height:24px; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor:pointer;"
   *ngIf="passwordVisible">
 </div>
-          <div *ngIf="(password?.invalid && (password?.touched|| password?.dirty || loginForm.submitted))" class="text-danger">
+          <div *ngIf="loginForm.get.('password')?.invalid && loginForm.get.('password')?.touched|| loginForm.get.('password')?.dirty || loginForm.submitted))" class="text-danger">
             Password is required.
           </div>
         </div>
